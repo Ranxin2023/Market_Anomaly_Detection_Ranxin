@@ -10,11 +10,12 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    console.log("Features are", features)
     try {
       const response = await fetch("/api/strategy", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ features: features.split(",").map(Number) }),
+        body: JSON.stringify({ features: features.split(",").map(col=>col.trim()) }),
       });
 
       const data = await response.json();
