@@ -1,4 +1,4 @@
-# Financial Anomaly Detection
+# Market Anomaly Detection
 ## Introduction
 This project implements a **Financial Anomaly Detection System** using **unsupervised machine learning** techniques. It is specifically designed to identify irregularities or deviations in financial datasets, which may indicate opportunities for risk mitigation, fraud detection, or system optimization. Anomalies in financial data often refer to instances where the behavior of a financial metric or a set of metrics deviates significantly from historical patterns or expectations. These anomalies can be caused by various factors, such as market fluctuations, irregular transactions, or even systemic errors in financial reporting.
 
