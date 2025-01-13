@@ -1,35 +1,53 @@
 # Financial Anomaly Detection
-This is a web-based application for detecting financial anomalies using machine learning. The project integrates a Next.js frontend, a Node.js backend, and a Python-based anomaly detection engine using the Isolation Forest algorithm.
+## Introduction
+This project implements a **Financial Anomaly Detection System** using **unsupervised machine learning** techniques. It is specifically designed to identify irregularities or deviations in financial datasets, which may indicate opportunities for risk mitigation, fraud detection, or system optimization. Anomalies in financial data often refer to instances where the behavior of a financial metric or a set of metrics deviates significantly from historical patterns or expectations. These anomalies can be caused by various factors, such as market fluctuations, irregular transactions, or even systemic errors in financial reporting.
+
+The core of this project uses the **Isolation Forest algorithm**, a powerful unsupervised machine learning method tailored for anomaly detection. Isolation Forest is effective in financial contexts because it excels at isolating anomalies by randomly partitioning data points. Unlike supervised learning methods, which require labeled datasets, the unsupervised approach allows this system to operate effectively without the need for pre-labeled data. This flexibility makes it particularly suitable for dynamic and ever-evolving financial environments.
+
+This project provides an interactive web-based solution built with Next.js, which allows users to upload financial datasets, select specific metrics for analysis, and visualize the results of the anomaly detection. The backend, developed using Node.js, communicates with a Python-based anomaly detection engine through the spawn function to process data and return actionable insights.
 ## Features
-1. Anomaly Detection:
+1. **Anomaly Detection**:
 
 Uses the Isolation Forest algorithm, a tree-based, unsupervised machine learning model, to identify anomalies in financial datasets.
 
 Detects irregularities in numerical features of financial transactions.
 
-2. Unsupervised Learning:
+2. **Unsupervised Learning**:
 
 The Isolation Forest algorithm operates in an unsupervised fashion, meaning it does not require labeled data.
 
 It identifies anomalies by measuring how "isolated" a point is in the feature space, making it ideal for detecting rare or unusual events in datasets.
 
-3. Dynamic Frontend:
+3. **Dynamic Frontend**:
 
 Built using Next.js, a React framework for server-rendered applications.
 
 Features an intuitive interface where users can input features and view analysis results dynamically.
 
-4. Backend-Python Integration:
+4. **Backend-Python Integration**:
 
 The backend uses Node.js and leverages the spawn function to run Python scripts that execute the Isolation Forest model.
 
 Results from Python are parsed and returned to the frontend for display.
 
-5. Testing Framework:
+5. **Testing Framework**:
 
 Employs Jest for unit testing, ensuring robust and reliable backend and frontend functionality.
 ## Tech Used
-1. Isolation Forest
+1. **Unsupervised Learning** and **Anomalies**
+
+- Unsupervised Learning:
+
+Refers to machine learning tasks where the algorithm is not provided with explicit labels.
+
+The algorithm infers patterns and structures from the data itself.
+
+Anomaly Detection:
+
+Identifies rare events or data points that deviate significantly from the majority of the data.
+
+Critical in financial applications to flag irregular transactions or market anomalies.
+2. **Isolation Forest**
 
 Concept:
 
@@ -43,21 +61,9 @@ Used to analyze numerical features in the dataset and detect outliers that repre
 
 Provides actionable insights, such as recommending "Reduce risk exposure" for anomalous data points.
 
-2. Unsupervised Learning and Anomalies
 
-Unsupervised Learning:
 
-Refers to machine learning tasks where the algorithm is not provided with explicit labels.
-
-The algorithm infers patterns and structures from the data itself.
-
-Anomaly Detection:
-
-Identifies rare events or data points that deviate significantly from the majority of the data.
-
-Critical in financial applications to flag irregular transactions or market anomalies.
-
-3. spawn Module
+3. **spawn** Module
 
 Concept:
 
@@ -71,7 +77,7 @@ Facilitates the execution of the detect_anomalies.py script from the Node.js bac
 
 Captures output from the Python script and processes it for the frontend.
 
-4. Next.js
+4. **Next.js**
 
 Concept:
 
@@ -83,7 +89,7 @@ Builds the user interface for anomaly detection.
 
 Handles client-server communication and dynamically updates the analysis results.
 
-5. Jest
+5. **Jest**
 
 Concept:
 
@@ -102,25 +108,27 @@ First, run the development server:
 ```sh
 https://github.com/Ranxin2023/Market_Anomaly_Detection_Ranxin
 ```
+
 2. Install dependencies:
 ```sh
 npm install
 ```
+3. Install python packages
+```sh
+pip install -r requirements.txt
+```
+4. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
+5. Run the tests:
+```bash
+npm test
+```
+6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
 
@@ -140,26 +148,21 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Project Structure
 ```graphql
-financial-anomaly-detection/
-├── app/
-│   ├── pages/
-│   │   ├── api/
-│   │   │   ├── strategy.ts         # Backend API for anomaly detection
-│   │   │   └── detect_anomalies.py # Python script for ML processing
-│   │   └── page.tsx                # Frontend homepage
-│   ├── utils/
-│   │   └── anomalyDetection.ts     # Utility functions
-├── public/                         # Static assets
-├── FinancialMarketData.csv         # Dataset for training and prediction
-├── README.md                       # Project documentation
-├── package.json                    # Node.js dependencies
-├── requirements.txt                # Python dependencies
-├── tsconfig.json                   # TypeScript configuration
-└── tailwind.config.js              # Tailwind CSS configuration
+project/
+├── pages/
+│   ├── api/
+│   │   ├── strategy.ts         # Backend API handling user requests
+│   │   ├── detect_anomalies.py # Python script for anomaly detection
+├── components/
+│   ├── AnalysisResult.tsx      # Component to display analysis results
+├── public/
+│   ├── assets/                 # Static files
+├── tests/
+│   ├── api/                    # Jest API tests
 
 ```
 
-# How it works
+## How it works
 1. Frontend: Accepts user inputs (column names) for anomaly detection.
 2. Backend:
 - Processes requests and communicates with the Python script.
@@ -167,3 +170,16 @@ financial-anomaly-detection/
 3. Python Script:
 - Uses Isolation Forest to analyze the dataset.
 - Outputs whether the data contains anomalies and suggests a financial strategy.
+
+## Usage
+1. Open the application in your browser.
+
+2. Input the financial features (comma-separated) into the input field.
+
+3. Click "Analyze" to view the anomaly detection results.
+
+4. The results include:
+
+- Status of each column (Anomalous or Normal).
+
+- Suggestions for improvement or risk mitigation for each anomalous column.
