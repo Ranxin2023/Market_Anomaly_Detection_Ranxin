@@ -81,6 +81,7 @@ The algorithm infers patterns and structures from the data itself.
 Identifies rare events or data points that deviate significantly from the majority of the data.
 
 Critical in financial applications to flag irregular transactions or market anomalies.
+
 2. **Isolation Forest**
 
 - Concept:
