@@ -4,7 +4,9 @@ import Image from "next/image";
 
 export default function Home() {
   const [features, setFeatures] = useState("");
-  const [result, setResult] = useState<{ isAnomaly: boolean; strategy: string } | null>(null);
+  const [result, setResult] = useState<
+    { column: string; isAnomaly: boolean; strategy: string }[]
+  >([]);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,6 +21,7 @@ export default function Home() {
       });
 
       const data = await response.json();
+      console.log("get the response is", data)
       setResult(data);
     } catch (error) {
       console.error("Error submitting features:", error);
@@ -31,14 +34,14 @@ export default function Home() {
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       {/* Main Content */}
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
+        {/* <Image
           className="dark:invert"
           src="/next.svg"
           alt="Next.js logo"
           width={180}
           height={38}
           priority
-        />
+        /> */}
 
         <h1 className="text-2xl font-bold text-center">Financial Anomaly Detection</h1>
         <p className="text-center text-sm sm:text-left">
@@ -56,7 +59,7 @@ export default function Home() {
             value={features}
             onChange={(e) => setFeatures(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-300"
-            placeholder="e.g., 0.5, 1.2, -0.3"
+            placeholder="e.g., DXY Curncy, JPY Curncy, USGG30YR"
             required
           />
           <button
@@ -69,15 +72,21 @@ export default function Home() {
         </form>
 
         {/* Result Display */}
-        {result && (
+        {result.length > 0 && (
           <div className="mt-8 p-4 border border-gray-300 rounded bg-gray-50 w-full max-w-lg">
             <h2 className="text-lg font-semibold">Analysis Result:</h2>
-            <p>
-              <strong>Is Anomaly:</strong> {result.isAnomaly ? "Yes" : "No"}
-            </p>
-            <p>
-              <strong>Investment Strategy:</strong> {result.strategy}
-            </p>
+            {result.map((col, index) => (
+              <div key={index} className="mb-4">
+                <h3 className="text-md font-bold">{col.column}</h3>
+                <p>
+                  <strong>Status:</strong> {col.isAnomaly ? "Anomalous" : "Normal"}
+                </p>
+                <p>
+                  <strong>Suggestion:</strong> {col.strategy}
+                </p>
+                
+              </div>
+            ))}
           </div>
         )}
       </main>
