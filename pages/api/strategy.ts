@@ -38,7 +38,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       }
     });
   } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+    res.setHeader?.("Allow", ["POST"]);
+    res
+    .status(405)
+    .json({ error: `Method ${req.method} Not Allowed. Use POST instead.` });
   }
 }
