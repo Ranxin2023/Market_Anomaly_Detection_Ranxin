@@ -33,6 +33,40 @@ Results from Python are parsed and returned to the frontend for display.
 5. **Testing Framework**:
 
 Employs Jest for unit testing, ensuring robust and reliable backend and frontend functionality.
+
+## Dataset
+
+The dataset used in this project contains financial indicators from various sources, including currency indices, government bond yields, and market volatility indices. Each column represents a financial metric, and each row corresponds to a specific date or financial observation.
+
+### Dataset Preprocessing
+
+The dataset contains metadata and headers in the first 5 rows. These rows are removed during preprocessing to ensure proper analysis.
+
+The actual column names start from the 6th row. This is handled programmatically in the Python script.
+
+Missing values (NaN) are dropped to ensure the IsolationForest model works effectively.
+
+### Example Columns in Dataset
+
+DXY Curncy: US Dollar Index.
+
+JPY Curncy: Japanese Yen Index.
+
+USGG30YR: US 30-Year Treasury Bond Yield.
+
+VIX Index: Market Volatility Index.
+
+GTDEM30: German 30-Year Treasury Bond Yield.
+
+The dataset is preprocessed to ensure compatibility with the anomaly detection model, focusing on key financial indicators that are prone to anomalies.
+
+### Financial Anomaly
+
+A financial anomaly can indicate irregularities such as sudden spikes or drops in financial metrics, deviations from expected trends, or outliers in the dataset. These anomalies are critical for identifying risks, opportunities, or potential errors in financial data. For example:
+
+A sharp increase in the VIX Index may indicate heightened market volatility.
+
+An unexpected drop in bond yields could suggest economic uncertainty.
 ## Tech Used
 1. **Unsupervised Learning** and **Anomalies**
 
