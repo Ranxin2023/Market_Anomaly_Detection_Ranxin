@@ -42,20 +42,20 @@ Refers to machine learning tasks where the algorithm is not provided with explic
 
 The algorithm infers patterns and structures from the data itself.
 
-Anomaly Detection:
+- Anomaly Detection:
 
 Identifies rare events or data points that deviate significantly from the majority of the data.
 
 Critical in financial applications to flag irregular transactions or market anomalies.
 2. **Isolation Forest**
 
-Concept:
+- Concept:
 
 Isolation Forest is an unsupervised learning algorithm specifically designed for anomaly detection.
 
 It isolates anomalies by constructing random decision trees and identifying points that require fewer splits to be isolated.
 
-Role in the Project:
+- Role in the Project:
 
 Used to analyze numerical features in the dataset and detect outliers that represent financial anomalies.
 
@@ -79,11 +79,11 @@ Captures output from the Python script and processes it for the frontend.
 
 4. **Next.js**
 
-Concept:
+- Concept:
 
 A powerful React-based framework that enables server-side rendering and static site generation.
 
-Role in the Project:
+- Role in the Project:
 
 Builds the user interface for anomaly detection.
 
@@ -91,11 +91,11 @@ Handles client-server communication and dynamically updates the analysis results
 
 5. **Jest**
 
-Concept:
+- Concept:
 
 A JavaScript testing framework designed for simplicity and performance.
 
-Role in the Project:
+- Role in the Project:
 
 Validates backend and frontend functionality.
 
@@ -136,14 +136,11 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Anomaly Documentation](https://medium.com/simform-engineering/anomaly-detection-with-unsupervised-machine-learning-3bcf4c431aff) Anomaly concepts tutorial
+- [Anomaly Detection Algorithms](https://builtin.com/machine-learning/anomaly-detection-algorithms)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
 ## Project Structure
