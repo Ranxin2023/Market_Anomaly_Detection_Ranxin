@@ -1,11 +1,99 @@
 # Financial Anomaly Detection
 This is a web-based application for detecting financial anomalies using machine learning. The project integrates a Next.js frontend, a Node.js backend, and a Python-based anomaly detection engine using the Isolation Forest algorithm.
 ## Features
-1. User-friendly interface for entering financial data columns.
-2. Anomaly detection powered by a machine learning model.
-3. Customizable strategies for financial data analysis.
-4. Integration between Next.js, Node.js, and Python.
-5. Outputs optimized strategies based on detected anomalies.
+1. Anomaly Detection:
+
+Uses the Isolation Forest algorithm, a tree-based, unsupervised machine learning model, to identify anomalies in financial datasets.
+
+Detects irregularities in numerical features of financial transactions.
+
+2. Unsupervised Learning:
+
+The Isolation Forest algorithm operates in an unsupervised fashion, meaning it does not require labeled data.
+
+It identifies anomalies by measuring how "isolated" a point is in the feature space, making it ideal for detecting rare or unusual events in datasets.
+
+3. Dynamic Frontend:
+
+Built using Next.js, a React framework for server-rendered applications.
+
+Features an intuitive interface where users can input features and view analysis results dynamically.
+
+4. Backend-Python Integration:
+
+The backend uses Node.js and leverages the spawn function to run Python scripts that execute the Isolation Forest model.
+
+Results from Python are parsed and returned to the frontend for display.
+
+5. Testing Framework:
+
+Employs Jest for unit testing, ensuring robust and reliable backend and frontend functionality.
+## Tech Used
+1. Isolation Forest
+
+Concept:
+
+Isolation Forest is an unsupervised learning algorithm specifically designed for anomaly detection.
+
+It isolates anomalies by constructing random decision trees and identifying points that require fewer splits to be isolated.
+
+Role in the Project:
+
+Used to analyze numerical features in the dataset and detect outliers that represent financial anomalies.
+
+Provides actionable insights, such as recommending "Reduce risk exposure" for anomalous data points.
+
+2. Unsupervised Learning and Anomalies
+
+Unsupervised Learning:
+
+Refers to machine learning tasks where the algorithm is not provided with explicit labels.
+
+The algorithm infers patterns and structures from the data itself.
+
+Anomaly Detection:
+
+Identifies rare events or data points that deviate significantly from the majority of the data.
+
+Critical in financial applications to flag irregular transactions or market anomalies.
+
+3. spawn Module
+
+Concept:
+
+A Node.js module used to create child processes and execute external commands or scripts.
+
+Provides a way to communicate between Node.js applications and external scripts (e.g., Python).
+
+Role in the Project:
+
+Facilitates the execution of the detect_anomalies.py script from the Node.js backend.
+
+Captures output from the Python script and processes it for the frontend.
+
+4. Next.js
+
+Concept:
+
+A powerful React-based framework that enables server-side rendering and static site generation.
+
+Role in the Project:
+
+Builds the user interface for anomaly detection.
+
+Handles client-server communication and dynamically updates the analysis results.
+
+5. Jest
+
+Concept:
+
+A JavaScript testing framework designed for simplicity and performance.
+
+Role in the Project:
+
+Validates backend and frontend functionality.
+
+Ensures the API endpoint correctly processes data, integrates with the Python script, and returns expected results.
 
 ## Getting Started
 
