@@ -2,29 +2,61 @@
 import { useState } from "react";
 import Image from "next/image";
 
+const VALID_CURRENCIES = [
+  'DXY Curncy',
+  'JPY Curncy',
+  'EUR Curncy',
+  'GBP Curncy',
+  'CHF Curncy',
+  'AUD Curncy',
+  'CAD Curncy',
+  'NZD Curncy',
+  'CNY Curncy',
+  'USGG30YR'
+];
+
 export default function Home() {
   const [features, setFeatures] = useState("");
   const [result, setResult] = useState<
     { column: string; isAnomaly: boolean; strategy: string }[]
   >([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const validateFeatures = (inputFeatures: string[]): boolean => {
+    return inputFeatures.every(feature => 
+      VALID_CURRENCIES.includes(feature.trim())
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
     setLoading(true);
-    console.log("Features are", features)
+
+    const inputFeatures = features.split(",").map(f => f.trim());
+    
+    if (!validateFeatures(inputFeatures)) {
+      setError(`Invalid currency types. Please use only: ${VALID_CURRENCIES.join(", ")}`);
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch("/api/strategy", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ features: features.split(",").map(col=>col.trim()) }),
+        body: JSON.stringify({ features: inputFeatures }),
       });
 
       const data = await response.json();
-      console.log("get the response is", data)
-      setResult(data);
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setResult(data);
+      }
     } catch (error) {
-      console.error("Error submitting features:", error);
+      setError("Error submitting features: " + (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -48,6 +80,18 @@ export default function Home() {
           Enter transaction features to determine if it's an anomaly and receive an investment strategy.
         </p>
 
+        {/* Currency Selection Guide */}
+        <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg">
+          <p className="font-medium mb-2">Available Currency Types:</p>
+          <div className="flex flex-wrap gap-2">
+            {VALID_CURRENCIES.map((currency) => (
+              <span key={currency} className="bg-white px-2 py-1 rounded border">
+                {currency}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* Interactive Form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center sm:items-start w-full max-w-lg">
           <label htmlFor="features" className="text-sm font-medium">
@@ -62,6 +106,11 @@ export default function Home() {
             placeholder="e.g., DXY Curncy, JPY Curncy, USGG30YR"
             required
           />
+          
+          {error && (
+            <div className="text-red-500 text-sm">{error}</div>
+          )}
+
           <button
             type="submit"
             disabled={loading}

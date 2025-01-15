@@ -71,5 +71,5 @@ for col in columns_to_use:  # Iterate over the selected columns
     results.append(column_result)
 
 # Output the results as JSON
-print(json.dumps(results, indent=2))
+# print(json.dumps(results, indent=2))
 
