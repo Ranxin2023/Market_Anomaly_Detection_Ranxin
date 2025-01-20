@@ -6,7 +6,7 @@ import sys
 from openai import OpenAI
 from sklearn.model_selection import train_test_split
 from models.IsolationForest import apply_isolation_forest
-from models.PCA import apply_pca
+from models.PCA import apply_rpca
 from models.SVM import apply_svm
 load_dotenv()
 # File path and input features
@@ -87,20 +87,20 @@ def main():
                 # Use only the current feature for model training
                 feature_data = X_train[[feature]]
 
-                if model_name == "PCA":
+                if model_name == "rPCA":
                     # Apply PCA to the current feature
-                    X_train_pca, explained_variance = apply_pca(feature_data, n_components=1)
+                    X_train_pca, explained_variance = apply_rpca(feature_data, n_components=1)
                     explanation_context = {
                         "feature": feature,
                         "explained_variance_ratio": explained_variance.tolist(),
                         "description": f"PCA was used to analyze the feature '{feature}', reducing dimensionality to identify the most significant component.",
                     }
-                    explanation = generate_general_response("PCA", explanation_context)
+                    explanation = generate_general_response("rPCA", explanation_context)
                     # print(f"General Explanation for PCA on '{feature}':")
                     # print(explanation)
                     result.append({
                         "feature": feature,
-                        "model": "PCA",
+                        "model": "rPCA",
                         "explained_variance_ratio": explained_variance.tolist(),
                         "explanation": explanation,
                     })
