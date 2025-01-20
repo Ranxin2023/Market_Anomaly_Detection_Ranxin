@@ -42,3 +42,9 @@ next-env.d.ts
 # dataset
 Financial_Distress.csv
 creditcard.csv
+
+#old files
+detect_anomalies_old.py
+
+# python cache
+__pycache__
