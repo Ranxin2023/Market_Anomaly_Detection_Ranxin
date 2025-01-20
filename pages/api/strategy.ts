@@ -3,44 +3,66 @@ import { spawn } from "child_process";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
-    const { features } = req.body;
-    console.log("Features received", features)
+    const { features, models } = req.body; // Expect both 'features' and 'models' in the POST request body
+    console.log("Features received:", features);
+    console.log("Models received:", models);
+
     if (!features || !Array.isArray(features)) {
-      return res.status(400).json({ error: "Invalid input data" });
+      return res.status(400).json({ error: "Invalid input: 'features' must be a non-empty array." });
     }
 
-    // Use Python to process the Excel file and detect anomalies
-    const pythonProcess = spawn("python", ["pages/api/detect_anomalies.py", JSON.stringify(features),]);
+    if (!models || !Array.isArray(models)) {
+      return res.status(400).json({ error: "Invalid input: 'models' must be a non-empty array." });
+    }
+
+    // Use Python to process the input features and models
+    const pythonProcess = spawn("python", [
+      "pages/api/detect_anomalies.py", 
+      JSON.stringify(features), 
+      JSON.stringify(models)
+    ]);
 
     let result = "";
+    let errorOutput = "";
+
+    // Capture Python script's stdout
     pythonProcess.stdout.on("data", (data) => {
       result += data.toString();
     });
 
+    // Capture Python script's stderr
     pythonProcess.stderr.on("data", (data) => {
-      console.error("Python Error:", data.toString());
+      errorOutput += data.toString();
     });
 
+    // Handle script completion
     pythonProcess.on("close", (code) => {
-      console.log("return code is", code)
+      console.log("Python script exited with code:", code);
+
       if (code === 0) {
         try {
-          console.log("result in ts is:\n",result)
-          const parsedResult = JSON.parse(result.trim()); // Trim any extra whitespace
-          console.log("parsed result is", parsedResult)
+          console.log("Raw result from Python script:", result);
+          const parsedResult = JSON.parse(result.trim()); // Parse Python's JSON output
+          console.log("Parsed result:", parsedResult);
           res.status(200).json(parsedResult);
         } catch (error) {
-          console.error("JSON Parse Error:", error, "Output:", result);
-          res.status(500).json({ error: "Invalid response from Python script" });
+          console.error("JSON Parse Error:", error, "Raw Output:", result);
+          res.status(500).json({ error: "Failed to parse Python script output." });
         }
       } else {
-        res.status(500).json({ error: "Anomaly detection failed" });
+        console.error("Python Script Error Output:", errorOutput);
+        res.status(500).json({ error: "Anomaly detection failed.", details: errorOutput });
       }
     });
+
+    // Handle process errors
+    pythonProcess.on("error", (error) => {
+      console.error("Failed to start Python script:", error);
+      res.status(500).json({ error: "Failed to execute Python script.", details: error.message });
+    });
   } else {
-    res.setHeader?.("Allow", ["POST"]);
-    res
-    .status(405)
-    .json({ error: `Method ${req.method} Not Allowed. Use POST instead.` });
+    // Handle unsupported HTTP methods
+    res.setHeader("Allow", ["POST"]);
+    res.status(405).json({ error: `Method ${req.method} Not Allowed. Use POST instead.` });
   }
 }
