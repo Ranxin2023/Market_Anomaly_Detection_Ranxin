@@ -20,7 +20,15 @@ const VALID_CURRENCIES = [
   "GTDEM30Y Govt",
   "GTDEM10Y Govt",
   "GTDEM2Y Govt",
-  "EONIA Index"
+  "EONIA Index",
+  "GTITL30YR Corp",
+  "GTITL10YR Corp",
+  "GTITL2YR Corp",
+  "LP01TREU Index",
+  "EMUSTRUU Index",
+  "LF94TRUU Index",
+  "MXUS Index"
+
 ];
 const VALID_MODELS = ["rPCA", "IsolationForest", "SVM"];
 
