@@ -38,11 +38,11 @@ The dataset used in this project contains financial indicators from various sour
 
 ### Dataset Preprocessing
 
-The dataset contains metadata and headers in the first 5 rows. These rows are removed during preprocessing to ensure proper analysis.
+- The dataset contains metadata and headers in the first 5 rows. These rows are removed during preprocessing to ensure proper analysis.
 
-The actual column names start from the 6th row. This is handled programmatically in the Python script.
+- The actual column names start from the 6th row. This is handled programmatically in the Python script.
 
-Missing values (NaN) are dropped to ensure the IsolationForest model works effectively.
+- Missing values (NaN) are dropped to ensure the IsolationForest model works effectively.
 
 ### Valid Currencies and Metrics
 
@@ -76,7 +76,7 @@ The system supports the following financial indicators for anomaly detection:
     - GTITL30YR Corp (Italian 30-Year Corporate Bond Yield)
     - GTITL10YR Corp (Italian 10-Year Corporate Bond Yield)
     - GTITL2YR Corp (Italian 2-Year Corporate Bond Yield)
-    
+
 - Other Financial Indices:
 
     - LP01TREU Index (Euro Corporate Index)
