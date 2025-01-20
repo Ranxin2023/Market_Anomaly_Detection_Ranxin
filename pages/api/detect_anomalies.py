@@ -50,6 +50,7 @@ def generate_general_response(model_name, explanation_context):
         f"Generate a general explanation for the results of a {model_name} model. "
         f"The model was used for analyzing financial market data. "
         f"Provide a user-friendly explanation based on this context:\n\n{json.dumps(explanation_context)}"
+        "Break down the explanation into easily digestible bullet points highlighting key points"
     )
 
     try:
