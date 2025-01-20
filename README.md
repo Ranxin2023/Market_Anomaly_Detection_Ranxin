@@ -1,10 +1,12 @@
 # Market Anomaly Detection
 ## Introduction
-This project implements a **Financial Anomaly Detection System** using **unsupervised machine learning** techniques. It is specifically designed to identify irregularities or deviations in financial datasets, which may indicate opportunities for risk mitigation, fraud detection, or system optimization. Anomalies in financial data often refer to instances where the behavior of a financial metric or a set of metrics deviates significantly from historical patterns or expectations. These anomalies can be caused by various factors, such as market fluctuations, irregular transactions, or even systemic errors in financial reporting.
+This project implements a **Financial Anomaly Detection System** using **unsupervised machine learning** techniques. The system is designed to identify irregularities or deviations in financial datasets, which may indicate opportunities for risk mitigation, fraud detection, or optimization. These anomalies, often caused by market fluctuations, irregular transactions, or systemic errors, are crucial for making data-driven decisions in the financial sector.
 
-The core of this project uses the **Isolation Forest algorithm**, a powerful unsupervised machine learning method tailored for anomaly detection. Isolation Forest is effective in financial contexts because it excels at isolating anomalies by randomly partitioning data points. Unlike supervised learning methods, which require labeled datasets, the unsupervised approach allows this system to operate effectively without the need for pre-labeled data. This flexibility makes it particularly suitable for dynamic and ever-evolving financial environments.
+The core of this project revolves around the Isolation Forest algorithm, Principal Component Analysis (PCA), and Support Vector Machines (SVM). These models are tailored for anomaly detection and dimensionality reduction, making them ideal for identifying and understanding unusual patterns in financial data.
 
-This project provides an interactive web-based solution built with Next.js, which allows users to upload financial datasets, select specific metrics for analysis, and visualize the results of the anomaly detection. The backend, developed using Node.js, communicates with a Python-based anomaly detection engine through the spawn function to process data and return actionable insights.
+The project features a fully interactive web-based solution built with Next.js and powered by a backend written in Node.js. It integrates seamlessly with a Python-based machine learning engine for high-performance data analysis, allowing users to input datasets, select models, and visualize results dynamically.
+
+
 ## Features
 1. **Anomaly Detection**:
 

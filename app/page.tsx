@@ -22,7 +22,7 @@ const VALID_CURRENCIES = [
   "GTDEM2Y Govt",
   "EONIA Index"
 ];
-const VALID_MODELS = ["PCA", "IsolationForest", "SVM"];
+const VALID_MODELS = ["rPCA", "IsolationForest", "SVM"];
 
 export default function Home() {
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
@@ -76,7 +76,7 @@ export default function Home() {
         setIFResult(data);
         setPCAResult([]); // Clear PCA results
         setSVMResult([]); // Clear PCA results
-      } else if (selectedModel === "PCA") {
+      } else if (selectedModel === "rPCA") {
         setPCAResult(data);
         setIFResult([]); // Clear Isolation Forest results
         setSVMResult([]); // Clear Isolation Forest results
