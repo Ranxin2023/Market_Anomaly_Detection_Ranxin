@@ -9,15 +9,17 @@ The project features a fully interactive web-based solution built with Next.js a
 
 ## Features
 1. **Anomaly Detection**
-- Isolation Forest:
+- **Isolation Forest**:
     - Detects anomalies by isolating data points in the feature space.
     - Suitable for detecting rare or unusual events without labeled data.
-- Support Vector Machine (SVM):
+- **Support Vector Machine (SVM)**:
     - Identifies anomalies using hyperplanes to separate outliers from normal data points.
     - Useful for datasets with complex patterns.
-- Principal Component Analysis (PCA):
-    - Reduces data dimensionality to understand variance distribution.
-    - Highlights anomalies as deviations from major components.
+- **robust Principal Component Analysis (rPCA)**:
+    - Separates Data into Components:Decomposes data into low-rank structure (dominant patterns) and sparse components (outliers or anomalies).
+    - Handles Outliers Effectively:Identifies anomalies as deviations from the low-rank structure, making it more robust than standard PCA.
+    - Highlights Anomalies in Financial Data: Reveals rare events or irregularities while preserving the integrity of the major trends.
+    
 2. **Dynamic Frontend**
 - Built with Next.js, offering:
     - Intuitive interface to select financial metrics and models.
@@ -206,16 +208,39 @@ To learn more about Next.js, take a look at the following resources:
 ## Project Structure
 ```graphql
 project/
+project/
 ├── pages/
 │   ├── api/
-│   │   ├── strategy.ts         # Backend API handling user requests
-│   │   ├── detect_anomalies.py # Python script for anomaly detection
+│   │   ├── strategy.ts           # Backend API handling user requests
+│   │   ├── detect_anomalies.py   # Python script for anomaly detection (supports Isolation Forest, PCA, rPCA, and SVM)
+│   ├── index.tsx                 # Main Next.js page for user interaction
 ├── components/
-│   ├── AnalysisResult.tsx      # Component to display analysis results
+│   ├── AnalysisResult.tsx        # Component to dynamically display analysis results
+│   ├── FeatureSelection.tsx      # Component for selecting features
+│   ├── ModelSelection.tsx        # Component for selecting models
+├── models/
+│   ├── IsolationForest.py        # Implementation of Isolation Forest
+│   ├── PCA.py                    # Implementation of PCA and robust PCA (rPCA)
+│   ├── SVM.py                    # Implementation of SVM for anomaly detection
 ├── public/
-│   ├── assets/                 # Static files
+│   ├── assets/                   # Static assets (e.g., images, logos)
+├── styles/
+│   ├── globals.css               # Global styles for the project
 ├── tests/
-│   ├── api/                    # Jest API tests
+│   ├── api/
+│   │   ├── strategy.test.ts      # Jest tests for backend API
+│   ├── frontend/
+│   │   ├── AnalysisResult.test.tsx  # Jest tests for frontend components
+├── utils/
+│   ├── anomalyDetection.ts       # Helper functions for anomaly detection
+│   ├── validations.ts            # Validation functions for user inputs
+├── datasets/
+│   ├── FinancialMarketData.csv   # Example dataset for anomaly detection
+│   ├── Financial_Distress.csv    # Additional datasets for testing
+├── .env                          # Environment variables (e.g., OpenAI API Key)
+├── requirements.txt              # Python dependencies
+├── package.json                  # Project dependencies and scripts
+├── README.md                     # Documentation for the project
 
 
 ```
