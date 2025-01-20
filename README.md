@@ -8,33 +8,29 @@ The project features a fully interactive web-based solution built with Next.js a
 
 
 ## Features
-1. **Anomaly Detection**:
-
-Uses the Isolation Forest algorithm, a tree-based, unsupervised machine learning model, to identify anomalies in financial datasets.
-
-Detects irregularities in numerical features of financial transactions.
-
-2. **Unsupervised Learning**:
-
-The Isolation Forest algorithm operates in an unsupervised fashion, meaning it does not require labeled data.
-
-It identifies anomalies by measuring how "isolated" a point is in the feature space, making it ideal for detecting rare or unusual events in datasets.
-
-3. **Dynamic Frontend**:
-
-Built using Next.js, a React framework for server-rendered applications.
-
-Features an intuitive interface where users can input features and view analysis results dynamically.
-
-4. **Backend-Python Integration**:
-
-The backend uses Node.js and leverages the spawn function to run Python scripts that execute the Isolation Forest model.
-
-Results from Python are parsed and returned to the frontend for display.
-
-5. **Testing Framework**:
-
-Employs Jest for unit testing, ensuring robust and reliable backend and frontend functionality.
+1. **Anomaly Detection**
+- Isolation Forest:
+    - Detects anomalies by isolating data points in the feature space.
+    - Suitable for detecting rare or unusual events without labeled data.
+- Support Vector Machine (SVM):
+    - Identifies anomalies using hyperplanes to separate outliers from normal data points.
+    - Useful for datasets with complex patterns.
+- Principal Component Analysis (PCA):
+    - Reduces data dimensionality to understand variance distribution.
+    - Highlights anomalies as deviations from major components.
+2. **Dynamic Frontend**
+- Built with Next.js, offering:
+    - Intuitive interface to select financial metrics and models.
+    - Interactive visualizations of analysis results.
+    - Real-time updates for anomaly detection.
+3. **Python Integration**
+- Backend uses **Node.js spawn module** to execute Python scripts:
+    - Scripts handle model computation (Isolation Forest, PCA, and SVM).
+    - Results are passed back to the frontend for display.
+4. **Testing Framework**
+- Employs **Jest** for robust backend and frontend testing:
+    - Ensures API endpoints correctly process data.
+    - Validates Python integration and result accuracy.
 
 ## Dataset
 
@@ -48,19 +44,46 @@ The actual column names start from the 6th row. This is handled programmatically
 
 Missing values (NaN) are dropped to ensure the IsolationForest model works effectively.
 
-### Example Columns in Dataset
+### Valid Currencies and Metrics
 
-DXY Curncy: US Dollar Index.
+The system supports the following financial indicators for anomaly detection:
 
-JPY Curncy: Japanese Yen Index.
+- Currency and Commodity Indices:
 
-USGG30YR: US 30-Year Treasury Bond Yield.
+    - XAU BGNL Curncy
+    - CRY Index
+    - DXY Curncy
+    - Cl1 Comdty
+    - VIX Index
 
-VIX Index: Market Volatility Index.
+- Bond Yields:
 
-GTDEM30: German 30-Year Treasury Bond Yield.
+    - USGG30YR Index (US 30-Year Treasury Bond Yield)
+    - GT10 Govt
+    - USGG2YR Index (US 2-Year Treasury Bond Yield)
+    - USGG3M Index (US 3-Month Treasury Yield)
+    - US0001M Index (US 1-Month Treasury Yield)
 
-The dataset is preprocessed to ensure compatibility with the anomaly detection model, focusing on key financial indicators that are prone to anomalies.
+- European Government Bonds:
+
+    - GTDEM30Y Govt (German 30-Year Treasury Bond Yield)
+    - GTDEM10Y Govt (German 10-Year Treasury Bond Yield)
+    - GTDEM2Y Govt (German 2-Year Treasury Bond Yield)
+    - EONIA Index (Euro Overnight Index Average)
+
+- Italian Corporate Bonds:
+
+    - GTITL30YR Corp (Italian 30-Year Corporate Bond Yield)
+    - GTITL10YR Corp (Italian 10-Year Corporate Bond Yield)
+    - GTITL2YR Corp (Italian 2-Year Corporate Bond Yield)
+    
+- Other Financial Indices:
+
+    - LP01TREU Index (Euro Corporate Index)
+    - EMUSTRUU Index (EMU Bond Index)
+    - LF94TRUU Index (Global Fixed Income Index)
+    - MXUS Index (S&P 500 US Index)
+
 
 ### Financial Anomaly
 
@@ -193,6 +216,7 @@ project/
 │   ├── assets/                 # Static files
 ├── tests/
 │   ├── api/                    # Jest API tests
+
 
 ```
 
