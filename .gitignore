@@ -45,6 +45,7 @@ creditcard.csv
 
 #old files
 detect_anomalies_old.py
+.mailmap
 
 # python cache
 __pycache__
